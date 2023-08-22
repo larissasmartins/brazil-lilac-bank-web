@@ -1,8 +1,8 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
+//////////////////////////////////////
 
+// Modal window
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -55,7 +55,20 @@ message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
 
 
-// Scroll down
+// Button scroll down
 btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+// // Page navigation smoothly - event delegation
+// 1. Add event listener to common parent element to the elements
+// 2. Determine what element originated the event
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault(); // prevent browser to go streight to the section
+
+  // Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  };
 });
