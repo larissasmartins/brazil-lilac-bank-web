@@ -91,3 +91,30 @@ tabsContainer.addEventListener('click', function (e) {
     .querySelector(`.operations__content--${btnClicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+// Menu fade animation - Passing arguments to event handlers
+nav.addEventListener('mouseover', function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const linkClicked = e.target;
+    const siblings = linkClicked.closest('.nav').querySelectorAll('.nav__link');
+    const logo = linkClicked.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== linkClicked) el.style.opacity = 0.5;
+    });
+    logo.style.opacity = 0.5;
+  }
+});
+
+nav.addEventListener('mouseout', function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const linkClicked = e.target;
+    const siblings = linkClicked.closest('.nav').querySelectorAll('.nav__link');
+    const logo = linkClicked.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== linkClicked) el.style.opacity = 1;
+    });
+    logo.style.opacity = 1;
+  }
+});
