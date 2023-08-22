@@ -1,8 +1,7 @@
 'use strict';
 
 //////////////////////////////////////
-
-// Modal window
+// Variables 
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -12,10 +11,12 @@ const header = document.querySelector('.header');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 const nav = document.querySelector('.nav');
+
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 
+// Modal window
 const openModal = function () {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
@@ -71,4 +72,22 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   };
+});
+
+// Tabbed component
+tabsContainer.addEventListener('click', function (e) {
+  const btnClicked = e.target.closest('.operations__tab');
+
+  // Guard clause
+  if (!btnClicked) return;
+
+  // Active tab
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  btnClicked.classList.add('operations__tab--active');
+
+  // Activate content area
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+  document
+    .querySelector(`.operations__content--${btnClicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
