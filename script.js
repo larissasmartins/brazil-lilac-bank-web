@@ -93,28 +93,18 @@ tabsContainer.addEventListener('click', function (e) {
 });
 
 // Menu fade animation - Passing arguments to event handlers
-nav.addEventListener('mouseover', function (e) {
+const handleHover = function (e) {
   if (e.target.classList.contains('nav__link')) {
     const linkClicked = e.target;
     const siblings = linkClicked.closest('.nav').querySelectorAll('.nav__link');
     const logo = linkClicked.closest('.nav').querySelector('img');
 
     siblings.forEach(el => {
-      if (el !== linkClicked) el.style.opacity = 0.5;
+      if (el !== linkClicked) el.style.opacity = this;
     });
-    logo.style.opacity = 0.5;
+    logo.style.opacity = this;
   }
-});
-
-nav.addEventListener('mouseout', function (e) {
-  if (e.target.classList.contains('nav__link')) {
-    const linkClicked = e.target;
-    const siblings = linkClicked.closest('.nav').querySelectorAll('.nav__link');
-    const logo = linkClicked.closest('.nav').querySelector('img');
-
-    siblings.forEach(el => {
-      if (el !== linkClicked) el.style.opacity = 1;
-    });
-    logo.style.opacity = 1;
-  }
-});
+}
+// reducing the need to pass the opacity argument explicitly every time
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+nav.addEventListener('mouseout', handleHover.bind(1));
