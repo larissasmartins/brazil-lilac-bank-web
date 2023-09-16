@@ -419,6 +419,12 @@ h4 {
   width: 5.5rem;
   font-size: 3.25rem;
   cursor: pointer;
+  transition: all .4s ease-in-out;
+}
+
+.slider__btn:hover {
+  background: var(--color-primary);
+  color: #fff;
 }
 
 .slider__btn--left {
@@ -459,8 +465,8 @@ h4 {
 }
 
 .dots__dot--active {
-  /* background-color: #fff; */
-  background-color: #888;
+  background-color: var(--color-primary);
+  /* background-color: #888; */
   opacity: 1;
 }
 
